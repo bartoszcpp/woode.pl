@@ -1,0 +1,32 @@
+{
+  "name": "learn-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@apollo/react-hooks": "^3.1.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.29",
+    "@fortawesome/free-brands-svg-icons": "^5.13.1",
+    "@fortawesome/free-solid-svg-icons": "^5.13.1",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "apollo-boost": "^0.4.9",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "cross-fetch": "^3.1.4",
+    "fetch": "^1.1.0",
+    "flickity": "^2.2.2",
+    "flickity-as-nav-for": "^2.0.1",
+    "graphql": "^15.2.0",
+    "next": "^11.0.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.0.1",
+    "react-dom": "16.13.1",
+    "react-flickity-component": "^3.6.1",
+    "react-responsive": "^8.1.0",
+    "sass": "^1.35.1"
+  }
+}

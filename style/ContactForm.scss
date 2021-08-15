@@ -1,0 +1,88 @@
+@import "./global.scss";
+
+.contact {
+  margin-top: 50px;
+  text-align: center;
+  padding: 70px;
+}
+
+.form {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 500;
+}
+input[type="text"],
+input[type="email"],
+input[type="subject"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-bottom: 1px solid $main-color;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  outline: black;
+}
+.submit {
+  background-color: white;
+  color: black;
+  border: 1px solid $main-color;
+  border-radius: none;
+  padding: 10px 50px;
+  cursor: pointer;
+}
+.submit:hover {
+  background-color: $main-color;
+  color: white;
+}
+.btn-mod.btn-large {
+  height: auto;
+  padding: 13px 52px;
+  font-size: 15px;
+  transition: all 0.2s cubic-bezier(0, 0, 0.58, 1);
+  letter-spacing: 2px;
+}
+
+/*-----------------contact--------------------*/
+.bg-contact {
+  background-image: url("/contact-wallpaper.jpg");
+  height: 560px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+}
+.socialIcon {
+  margin: 20px 20px 20px 0;
+  width: 40px !important;
+  height: auto;
+  vertical-align: middle;
+}
+
+.socialIcon:hover {
+  color: #000000b8;
+}
+
+.daneKontaktowe {
+  text-align: left;
+  /* margin: 50px auto;
+    padding: 0 100px !important; */
+}
+
+.daneKontaktowe h3 {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.daneKontaktowe p {
+  margin-bottom: 2px;
+  text-align: left;
+}

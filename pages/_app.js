@@ -12,11 +12,12 @@ import "../style/ContentBlock.scss";
 import "../style/ContactForm.scss";
 import "../style/Footer.scss";
 import "../style/ProductOverview.scss";
+import "../style/MainContent.scss";
 import "flickity/dist/flickity.min.css";
 //import "../style/flickity.css";
 
 const client = new ApolloClient({
-  uri: "https://wordpress.deniscarpe.pl/wp/graphql",
+  uri: "https://wordpress.woode.pl/graphql",
 });
 
 // This default export is required in a new `pages/_app.js` file.

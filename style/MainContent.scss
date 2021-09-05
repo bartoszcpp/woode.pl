@@ -1,0 +1,119 @@
+@import "./global.scss";
+.Main__header {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.Main__row {
+  margin-top: 100px;
+}
+
+.Main__image {
+  padding: 0 20px;
+
+  @include small {
+    order: 1;
+    padding: 0;
+  }
+}
+
+.Main__content {
+  padding: 0 20px;
+  margin-top: 100px;
+
+  .Main__text {
+    text-align: justify;
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  @include small {
+    order: 2;
+    margin-top: 50px;
+  }
+}
+
+.Main__contact-btn {
+  @include small {
+    //padding-top: 20px;
+    margin: 0 auto;
+    display: table;
+  }
+}
+
+.btn-more__container {
+  background-color: transparent;
+  border: 2px solid #000;
+  font-size: 28px;
+  position: relative;
+  width: 220px;
+  height: 50px;
+
+  .btn-more__background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -75%);
+    background-color: #000;
+    transition: transform 0.3s ease-out;
+    letter-spacing: normal;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &:hover {
+    .btn-more__background {
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.Our-product {
+  &__section-border {
+    border: 2px solid #000;
+
+    .Main__header {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -22px;
+      background-color: #fff;
+      padding: 0 10px;
+    }
+
+    @include small {
+      margin: 0 10px;
+    }
+  }
+
+  &__row {
+    margin: 50px 0;
+  }
+
+  .col-4 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  &__button {
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    padding: 0 30px;
+    background-color: #fff;
+  }
+
+  @include small {
+    margin-top: 100px;
+  }
+}

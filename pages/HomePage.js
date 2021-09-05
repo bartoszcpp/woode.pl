@@ -6,15 +6,14 @@ import SecondInfo from "../components/SecondInfo";
 import ContentBlock from "../components/ContentBlock";
 import ContactForm from "../components/ContactForm";
 import Link from "next/link";
+import MainContent from "../components/MainContent";
 
 const HomePage = () => {
   return (
     <>
       <Header />
-      <BackgroundImage id="home_page" />
-      <Products count1={2} count2={3} number={4} category="home_page" />
-      <ContentBlock id="home_page" />
-      <ContactForm />
+      <BackgroundImage />
+      <MainContent />
     </>
   );
 };

@@ -1,22 +1,19 @@
-.Polish {
-  &__flag {
-    width: 25px;
-    height: 20px;
-    margin: 0 10px;
+// Variables:
+$main-color: #000;
 
-    &--red {
-      background-color: #e9e8e7;
-      width: 100%;
-      height: 50%;
-    }
-
-    &--white {
-      background-color: #d4213d;
-      width: 100%;
-      height: 50%;
-    }
+@mixin tablet {
+  @media (min-width: 769px) and (max-width: 1024px) {
+    @content;
   }
 }
 
-// Variables:
-$main-color: #71b23c;
+@mixin small {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+*::selection {
+  color: #ffffff;
+  background: $main-color;
+}

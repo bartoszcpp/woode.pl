@@ -14,6 +14,7 @@ const HomePage = () => {
       <Header />
       <BackgroundImage />
       <MainContent />
+      <Products category="home_page" />
     </>
   );
 };

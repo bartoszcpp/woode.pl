@@ -11,10 +11,16 @@ const POSTS_QUERY = gql`
         name
         slug
         ... on SimpleProduct {
-          price(format: RAW)
+          price
         }
         image {
           sourceUrl
+        }
+        galleryImages {
+          nodes {
+            sourceUrl
+            altText
+          }
         }
       }
     }
@@ -51,6 +57,7 @@ const Products = (props) => {
       name={product.name}
       price={product.price}
       slug={product.slug}
+      gallery_images={product.galleryImages}
     />
   ));
   // const allCategories = categories.map((category) => {

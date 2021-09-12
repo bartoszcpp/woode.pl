@@ -14,6 +14,30 @@
     }
   }
 
+  &__short-description {
+    p {
+      text-align: justify;
+      font-size: 16px;
+    }
+  }
+
+  &__description {
+    ul {
+      li {
+        text-align: left;
+      }
+    }
+
+    p {
+      text-align: left;
+    }
+  }
+
+  .contact {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
   .products-carousel {
     .carousel-cell {
       width: 100%;

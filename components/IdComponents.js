@@ -5,6 +5,7 @@ import { AppContext } from "./contex/AppContex";
 import { handleAddToCard } from "../functions";
 import Flickity from "react-flickity-component";
 import Select from "./Select";
+import ContactForm from "./ContactForm";
 
 const POSTS_QUERY = gql`
   query MyQuery($data: ID!) {
@@ -31,6 +32,7 @@ const POSTS_QUERY = gql`
           options
         }
       }
+      shortDescription
     }
   }
 `;
@@ -44,6 +46,8 @@ const IdComponents = (props) => {
       data: props.id,
     },
   });
+
+  const scrollToElement = require("scroll-to-element");
 
   if (loading)
     return (
@@ -74,14 +78,7 @@ const IdComponents = (props) => {
     lazyLoad: 1,
     fullScreen: true,
     pageDots: false,
-    prevNextButtons: false,
-  };
-
-  const flickity_options_thumbns = {
-    cellAlign: "left",
-    contain: true,
-    groupCells: 3,
-    asNavFor: ".products-carousel",
+    prevNextButtons: true,
   };
 
   const gallery = gallery_images.nodes.map((image) => (
@@ -89,6 +86,13 @@ const IdComponents = (props) => {
       <img className="img-fluid" src={image.sourceUrl} alt={image.slug} />
     </div>
   ));
+
+  const handleScrollToSection = () => {
+    scrollToElement("#contact_form", {
+      offset: -100,
+      duration: 1000,
+    });
+  };
 
   let floatValue = parseInt(product.price.match(/[+-]?\d+(\.\d+)?/g)[0]);
 
@@ -110,46 +114,25 @@ const IdComponents = (props) => {
               </div>
               {gallery}
             </Flickity>
-            <Flickity
-              className={"thumbns-carousel"}
-              options={flickity_options_thumbns}
-            >
-              <div className="carousel-cell">
-                <img
-                  className="img-fluid"
-                  src={product.image.sourceUrl}
-                  alt=""
-                />
-              </div>
-              {gallery}
-            </Flickity>
           </div>
           <div className="col-md-5 ProductOverview__info">
             <h3>{product.name}</h3>
-            <h4>{floatValue} zł</h4>
+            <h4>Cena: {floatValue} zł</h4>
+            <div
+              className="ProductOverview__short-description"
+              dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+            ></div>
 
-            {/* Select options */}
-            {select}
-
-            <button
-              className="addToCard"
-              onClick={() =>
-                handleAddToCard(
-                  product.slug,
-                  product,
-                  price,
-                  count,
-                  cart,
-                  togglePrice,
-                  toggleCount,
-                  toggleCart
-                )
-              }
-            >
-              DO KOSZYKA
+            <button className="addToCard" onClick={handleScrollToSection}>
+              ZAMÓW
             </button>
           </div>
         </div>
+        <div
+          className="ProductOverview__description"
+          dangerouslySetInnerHTML={{ __html: product.description }}
+        ></div>
+        <ContactForm name={product.name} is_pdp={true} />
       </div>
     </div>
   );

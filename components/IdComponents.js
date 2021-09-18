@@ -60,17 +60,18 @@ const IdComponents = (props) => {
     );
 
   const product = data.product;
-  const gallery_images = data.product.galleryImages;
-  console.log(data.product, "product");
+  const gallery_images = data.product.galleryImages.nodes;
+  console.log(gallery_images === null ? "1" : "2", "product");
+  console.log(gallery_images.nodes, "product");
 
-  let select;
-  if (data.product.attributes) {
-    select = data.product.attributes.nodes.map((attribute) => (
-      <Select select={attribute.options} name={attribute.name} />
-    ));
-  } else {
-    select = null;
-  }
+  // let select;
+  // if (data.product.attributes) {
+  //   select = data.product.attributes.nodes.map((attribute) => (
+  //     <Select select={attribute.options} name={attribute.name} />
+  //   ));
+  // } else {
+  //   select = null;
+  // }
 
   const flickity_options = {
     cellAlign: "left",
@@ -81,11 +82,14 @@ const IdComponents = (props) => {
     prevNextButtons: true,
   };
 
-  const gallery = gallery_images.nodes.map((image) => (
-    <div className="carousel-cell">
-      <img className="img-fluid" src={image.sourceUrl} alt={image.slug} />
-    </div>
-  ));
+  const gallery =
+    gallery_images.length > 0
+      ? gallery_images.map((image) => (
+          <div className="carousel-cell">
+            <img className="img-fluid" src={image.sourceUrl} alt={image.slug} />
+          </div>
+        ))
+      : null;
 
   const handleScrollToSection = () => {
     scrollToElement("#contact_form", {
@@ -94,30 +98,36 @@ const IdComponents = (props) => {
     });
   };
 
-  let floatValue = parseInt(product.price.match(/[+-]?\d+(\.\d+)?/g)[0]);
+  let floatValue = product.price
+    ? parseInt(product.price.match(/[+-]?\d+(\.\d+)?/g)[0])
+    : null;
 
   return (
     <div className="container">
       <div className="ProductOverview">
         <div className="row products">
           <div className="col-md-7">
-            <Flickity
-              className={"products-carousel"}
-              options={flickity_options}
-            >
-              <div className="carousel-cell">
-                <img
-                  className="img-fluid"
-                  src={product.image.sourceUrl}
-                  alt=""
-                />
-              </div>
-              {gallery}
-            </Flickity>
+            {gallery ? (
+              <Flickity
+                className={"products-carousel"}
+                options={flickity_options}
+              >
+                <div className="carousel-cell">
+                  <img
+                    className="img-fluid"
+                    src={product.image ? product.image.sourceUrl : ""}
+                    alt=""
+                  />
+                </div>
+                {gallery}
+              </Flickity>
+            ) : (
+              ""
+            )}
           </div>
           <div className="col-md-5 ProductOverview__info">
             <h3>{product.name}</h3>
-            <h4>Cena: {floatValue} zł</h4>
+            {floatValue ? <h4>Cena: {floatValue} zł</h4> : ""}
             <div
               className="ProductOverview__short-description"
               dangerouslySetInnerHTML={{ __html: product.shortDescription }}

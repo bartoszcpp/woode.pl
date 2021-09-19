@@ -13,6 +13,7 @@ import "../style/ContactForm.scss";
 import "../style/Footer.scss";
 import "../style/ProductOverview.scss";
 import "../style/MainContent.scss";
+import "../style/CollectionsComponent.scss";
 import "flickity/dist/flickity.min.css";
 //import "../style/flickity.css";
 

@@ -1,0 +1,21 @@
+.CollectionsContainer {
+  margin: 30px 0;
+
+  .CategoryTile {
+    margin-bottom: 30px;
+
+    &__image {
+      height: 400px;
+      background-size: cover;
+      background-color: #e2e2e2;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      h3 {
+        text-decoration: underline;
+      }
+    }
+  }
+}

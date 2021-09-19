@@ -14,7 +14,7 @@ const HomePage = () => {
       <Header />
       <BackgroundImage />
       <MainContent />
-      <Products category="home_page" />
+      <Products category="home_page" pcp={false} />
     </>
   );
 };

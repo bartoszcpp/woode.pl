@@ -41,7 +41,7 @@
   }
 
   .ProductTile {
-    margin: 10px 0;
+    margin: 30px 0;
     padding: 0 10px;
     -webkit-box-shadow: 0 0 20px -15px #828282;
     -moz-box-shadow: 0 0 20px -15px #828282;
@@ -58,6 +58,15 @@
 
     &__img {
       padding: 0;
+      display: flex;
+      border-left: 5px solid #000;
+      border-bottom: 5px solid #000;
+      border-top: 5px solid #000;
+
+      img {
+        display: block;
+        margin: auto;
+      }
     }
 
     &__content {
@@ -65,7 +74,8 @@
       color: #fff;
       display: flex;
       flex-wrap: wrap;
-      align-content: space-evenly;
+      align-content: space-between;
+      padding: 30px 15px;
     }
 
     &__view-more {
@@ -82,6 +92,7 @@
 
     &__texts {
       width: 100%;
+      padding: 10px 0;
     }
   }
 }

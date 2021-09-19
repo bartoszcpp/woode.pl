@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import Header from "../../components/Header";
 import BackgroundImage from "../../components/BackgroungImage";
-import CategoryComponent from "../../components/CategoryComponent";
 import Footer from "../../components/Footer";
+import Products from "../../components/Products";
 
 const cat = () => {
   const router = useRouter();
@@ -12,7 +12,7 @@ const cat = () => {
     <>
       <Header />
       <BackgroundImage id="home_page" />
-      <CategoryComponent cat={cat} />
+      <Products category={cat} pcp={true} />
       <Footer />
     </>
   );

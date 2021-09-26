@@ -8,7 +8,7 @@ const collections = () => {
   return (
     <>
       <Header />
-      <BackgroundImage id="home_page" />
+      // <BackgroundImage id="home_page" />
       <CollectionsComponent />
       <Footer />
     </>

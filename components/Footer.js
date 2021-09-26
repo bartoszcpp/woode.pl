@@ -1,14 +1,95 @@
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { gql } from "apollo-boost";
+import { useQuery } from "@apollo/react-hooks";
+import React, { useState } from "react";
 import Link from "next/link";
 
+const POSTS_QUERY = gql`
+  query MyQuery($data: ID!) {
+    post(id: $data, idType: SLUG) {
+      home_page_acf {
+        logo {
+          sourceUrl
+        }
+      }
+    }
+  }
+`;
+
+const POSTS_QUERY_CATEGORIES = gql`
+  {
+    productCategories(first: 1000) {
+      nodes {
+        id
+        image {
+          altText
+          sourceUrl
+        }
+        slug
+        name
+      }
+    }
+  }
+`;
+
 const Footer = () => {
+  const { loading, error, data } = useQuery(POSTS_QUERY, {
+    variables: {
+      data: "home_page",
+    },
+  });
+
+  const {
+    loading: loading_cat,
+    error: error_cat,
+    data: data_cat,
+  } = useQuery(POSTS_QUERY_CATEGORIES);
+
+  const cms_data = data
+    ? {
+        logo: data.post.home_page_acf.logo.sourceUrl,
+      }
+    : null;
+
+  const categories = data_cat ? data_cat.productCategories.nodes : null;
+
+  const categories_elements =
+    categories && categories.length > 0
+      ? categories.map((category) => {
+          if (category.slug === "bez-kategorii") return null;
+          return (
+            <Link href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
+              {category.name}
+            </Link>
+          );
+        })
+      : null;
+
   return (
     <footer>
-      <img className="img-fluid logoPng" src="/logo.png" alt="" /> <br />
-      <div className="footerMenu">
-        <Link href="/">STRONA GŁÓWNA</Link>
-        <Link href="/collections/obuwie">KATEGORIA 1</Link>
-        <Link href="/collections/akcesoria">KATEGORIA 2</Link>
-        <Link href="/contact">KONTAKT</Link>
+      <div className="Footer container">
+        <div className="row">
+          <div className="Footer__row col-md-4">
+            <img
+              className="img-fluid logoPng"
+              src={cms_data ? cms_data.logo : ""}
+              alt=""
+            />{" "}
+          </div>
+          <div className="Footer__row col-md-4">
+            <div className="Footer__menu">
+              <Link href="/">STRONA GŁÓWNA</Link>
+              <Link href="/[collections]" as={`/kolekcje`}>
+                KOLEKCJE
+              </Link>
+              <Link href="/contact">O NAS</Link>
+              <Link href="/contact">KONTAKT</Link>
+            </div>
+          </div>
+          <div className="Footer__row col-md-4">
+            <div className="Footer__menu">{categories_elements}</div>
+          </div>
+        </div>
       </div>
       <p>studio-web.pl</p>
     </footer>

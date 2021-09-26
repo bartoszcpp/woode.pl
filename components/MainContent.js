@@ -56,12 +56,12 @@ const MainContent = () => {
           <h1>{content ? content.content1Heading : null}</h1>
         </div>
         <div class="Main__row row">
-          <div class="Main__content col-6">
+          <div class="Main__content col-md-6">
             <div class="Main__text">
               {content ? content.content1Text : null}
             </div>
           </div>
-          <div class="Main__image col-6">
+          <div class="Main__image col-md-6">
             <img
               class="img-fluid"
               src={
@@ -74,7 +74,7 @@ const MainContent = () => {
           </div>
         </div>
         <div class="Main__row row">
-          <div class="Main__image col-6">
+          <div class="Main__image col-md-6">
             <img
               class="img-fluid"
               src={
@@ -85,7 +85,7 @@ const MainContent = () => {
               alt=""
             />
           </div>
-          <div class="Main__content col-6">
+          <div class="Main__content col-md-6">
             <div class="Main__text">
               {content ? content.content2Text : null}
             </div>
@@ -95,7 +95,7 @@ const MainContent = () => {
           <h1>{content ? content.content3Heading : null}</h1>
         </div>
         <div class="row">
-          <div class="Main__content col-6">
+          <div class="Main__content col-md-6">
             <div class="Main__text">
               {content ? content.content3Text : null}
             </div>
@@ -107,7 +107,7 @@ const MainContent = () => {
               </button>
             </div>
           </div>
-          <div class="Main__image col-6">
+          <div class="Main__image col-md-6">
             <img
               class="img-fluid"
               src={

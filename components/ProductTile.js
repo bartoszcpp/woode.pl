@@ -25,7 +25,7 @@ const ProductTile = (props) => {
   ));
 
   return (
-    <div className="ProductTile col-6 row">
+    <div className="ProductTile col-md-6 row">
       <div className="col-7 ProductTile__img">
         <img className="img-fluid" src={image} alt={name} />
       </div>
@@ -41,7 +41,7 @@ const ProductTile = (props) => {
           )}
         </div>
         <Link href="/produkty/[id]" as={`/produkty/${slug}`}>
-          <div className="ProductTile__view-more">Zamów</div>
+          <div className="ProductTile__view-more">OBEJRZYJ</div>
         </Link>
       </div>
     </div>

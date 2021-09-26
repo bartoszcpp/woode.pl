@@ -11,7 +11,7 @@ const cat = () => {
   return (
     <>
       <Header />
-      <BackgroundImage id="home_page" />
+      // <BackgroundImage id="home_page" />
       <Products category={cat} pcp={true} />
       <Footer />
     </>

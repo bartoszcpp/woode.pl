@@ -43,6 +43,7 @@ const BackgroundImage = (props) => {
   const flickity_options = {
     pageDots: false,
     wrapAround: true,
+    autoPlay: true,
   };
 
   if (loading)

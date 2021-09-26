@@ -1,8 +1,10 @@
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
 const POSTS_QUERY = gql`
   query MyQuery($data: ID!) {
@@ -18,7 +20,7 @@ const POSTS_QUERY = gql`
 
 const POSTS_QUERY_CATEGORIES = gql`
   {
-    productCategories {
+    productCategories(first: 1000) {
       nodes {
         id
         image {
@@ -40,6 +42,25 @@ const Header = () => {
   const hideDropdown = (e) => {
     setShow(false);
   };
+
+  let is_tablet;
+
+  if (typeof window !== "undefined") {
+    const [width, setWidth] = useState(window.innerWidth);
+    function handleWindowSizeChange() {
+      setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+      window.addEventListener("resize", handleWindowSizeChange);
+      return () => {
+        window.removeEventListener("resize", handleWindowSizeChange);
+      };
+    }, []);
+
+    is_tablet = width <= 991;
+  } else {
+    is_tablet = false;
+  }
 
   const { loading, error, data } = useQuery(POSTS_QUERY, {
     variables: {
@@ -70,6 +91,7 @@ const Header = () => {
     : null;
 
   const categories = data_cat ? data_cat.productCategories.nodes : null;
+  console.log(categories, "categories");
 
   const dropdowns_elements =
     categories.length > 0
@@ -100,6 +122,21 @@ const Header = () => {
           <Navbar.Collapse className="Header__collapse" id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Nav.Link href="/">STRONA GŁÓWNA</Nav.Link>
+              <div
+                className="Header__dropdown Header__dropdown--desktop"
+                onMouseEnter={showDropdown}
+              >
+                <Link href="/[collections]" as={`/kolekcje`}>
+                  {is_tablet ? "KOLEKCJE" : "OFERTA"}
+                </Link>
+              </div>
+              {is_tablet ? (
+                <div className="Header__dropdown" onClick={showDropdown}>
+                  OFERTA
+                </div>
+              ) : (
+                ""
+              )}
               <NavDropdown
                 id="basic-nav-dropdown"
                 show={show}
@@ -107,15 +144,26 @@ const Header = () => {
               >
                 {dropdowns_elements}
               </NavDropdown>
-              <div className="Header__dropdown" onMouseEnter={showDropdown}>
-                <Link href="/[collections]" as={`/kolekcje`}>
-                  OFERTA
-                </Link>
-              </div>
               <Nav.Link href="/contact">O NAS</Nav.Link>
               <Nav.Link href="/contact">KONTAKT</Nav.Link>
+              {is_tablet ? (
+                <div className="Header__social-icon">
+                  <FontAwesomeIcon icon={faFacebook} />
+                  <FontAwesomeIcon icon={faInstagram} />
+                </div>
+              ) : (
+                ""
+              )}
             </Nav>
           </Navbar.Collapse>
+          {!is_tablet ? (
+            <div className="Header__social-icon">
+              <FontAwesomeIcon icon={faFacebook} />
+              <FontAwesomeIcon icon={faInstagram} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </Navbar>
     </>

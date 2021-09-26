@@ -1,27 +1,40 @@
 @import "./global.scss";
 
+.Footer {
+  a {
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      color: rgb(197, 197, 197);
+      text-decoration: none;
+    }
+  }
+
+  p {
+    color: rgb(214, 214, 214);
+  }
+
+  &__menu {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+
+    a {
+      width: 100%;
+    }
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 footer {
   background-color: $main-color;
   padding: 30px 0;
   margin-top: 30px;
-}
-
-footer a {
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: rgb(197, 197, 197);
-  text-decoration: none;
-}
-
-footer p {
-  color: rgb(214, 214, 214);
-}
-
-.footerMenu {
-  margin-top: 30px;
-  padding: 20px;
 }

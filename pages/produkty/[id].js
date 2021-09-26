@@ -10,7 +10,7 @@ const id = () => {
   return (
     <>
       <Header />
-      <BackgroundImage id="home_page" />
+      // <BackgroundImage id="home_page" />
       <IdComponents id={id} />
       <Footer />
     </>

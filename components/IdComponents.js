@@ -19,8 +19,9 @@ const POSTS_QUERY = gql`
       description
       ... on SimpleProduct {
         price
+        stockStatus
       }
-      galleryImages {
+      galleryImages(first: 1000) {
         nodes {
           sourceUrl
           slug

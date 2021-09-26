@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const POSTS_QUERY = gql`
   {
-    productCategories {
+    productCategories(first: 1000) {
       nodes {
         id
         image {

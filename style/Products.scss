@@ -63,6 +63,10 @@
       border-bottom: 5px solid #000;
       border-top: 5px solid #000;
 
+      @include small {
+        border: 0;
+      }
+
       img {
         display: block;
         margin: auto;

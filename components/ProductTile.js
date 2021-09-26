@@ -26,10 +26,10 @@ const ProductTile = (props) => {
 
   return (
     <div className="ProductTile col-md-6 row">
-      <div className="col-7 ProductTile__img">
+      <div className="col-md-7 ProductTile__img">
         <img className="img-fluid" src={image} alt={name} />
       </div>
-      <div className="col-5 ProductTile__content">
+      <div className="col-md-5 ProductTile__content">
         <div className="ProductTile__texts">
           <div className="ProductTile__name">
             <h3>{name}</h3>

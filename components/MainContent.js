@@ -52,18 +52,18 @@ const MainContent = () => {
   return (
     <div className="MainContent">
       <div className="container">
-        <div class="Main__header">
+        <div className="Main__header">
           <h1>{content ? content.content1Heading : null}</h1>
         </div>
-        <div class="Main__row row">
-          <div class="Main__content col-md-6">
-            <div class="Main__text">
+        <div className="Main__row row">
+          <div className="Main__content col-md-6">
+            <div className="Main__text">
               {content ? content.content1Text : null}
             </div>
           </div>
-          <div class="Main__image col-md-6">
+          <div className="Main__image col-md-6">
             <img
-              class="img-fluid"
+              className="img-fluid"
               src={
                 content && content.content1Image
                   ? content.content1Image.sourceUrl
@@ -73,10 +73,10 @@ const MainContent = () => {
             />
           </div>
         </div>
-        <div class="Main__row row">
-          <div class="Main__image col-md-6">
+        <div className="Main__row row">
+          <div className="Main__image col-md-6">
             <img
-              class="img-fluid"
+              className="img-fluid"
               src={
                 content && content.content2Image
                   ? content.content2Image.sourceUrl
@@ -85,31 +85,31 @@ const MainContent = () => {
               alt=""
             />
           </div>
-          <div class="Main__content col-md-6">
-            <div class="Main__text">
+          <div className="Main__content col-md-6">
+            <div className="Main__text">
               {content ? content.content2Text : null}
             </div>
           </div>
         </div>
-        <div class="Main__header">
+        <div className="Main__header">
           <h1>{content ? content.content3Heading : null}</h1>
         </div>
-        <div class="row">
-          <div class="Main__content col-md-6">
-            <div class="Main__text">
+        <div className="row">
+          <div className="Main__content col-md-6">
+            <div className="Main__text">
               {content ? content.content3Text : null}
             </div>
-            <div class="Main__contact-btn">
-              <button class="btn-more__container">
-                <div class="btn-more__background">
+            <div className="Main__contact-btn">
+              <button className="btn-more__container">
+                <div className="btn-more__background">
                   <a href="/collections/all">Kontakt</a>
                 </div>
               </button>
             </div>
           </div>
-          <div class="Main__image col-md-6">
+          <div className="Main__image col-md-6">
             <img
-              class="img-fluid"
+              className="img-fluid"
               src={
                 content && content.content3Image
                   ? content.content3Image.sourceUrl

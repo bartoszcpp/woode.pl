@@ -37,11 +37,15 @@ const CollectionsComponent = () => {
                     style={{
                       backgroundImage: `url(${category.image.sourceUrl})`,
                     }}
-                  ></div>
+                  >
+                    <div className="CategoryTile__image--placeholder">
+                      <h3>{category.name}</h3>
+                    </div>
+                  </div>
                 ) : (
                   <div className="CategoryTile__image"></div>
                 )}
-                <h3>{category.name}</h3>
+                <h3></h3>
               </div>
             </Link>
           </div>

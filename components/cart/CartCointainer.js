@@ -14,7 +14,6 @@ const CartContainer = () => {
   return (
     <>
       <Header />
-      // <BackgroundImage id="home_page" />
       <div className="content-wrap-cart">
         {cart ? (
           <div className="cart-wrapper">

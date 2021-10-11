@@ -55,10 +55,10 @@ const Footer = () => {
 
   const categories_elements =
     categories && categories.length > 0
-      ? categories.map((category) => {
+      ? categories.map((category, index) => {
           if (category.slug === "bez-kategorii") return null;
           return (
-            <Link href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
+            <Link key={index} href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
               {category.name}
             </Link>
           );

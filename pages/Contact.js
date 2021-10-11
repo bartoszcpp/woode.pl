@@ -7,7 +7,6 @@ const Contact = () => {
   return (
     <>
       <Header />
-      // <BackgroundImage id="home_page" />
       <ContactContainer />
       <Footer />
     </>

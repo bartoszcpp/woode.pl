@@ -10,7 +10,7 @@ const POSTS_QUERY = gql`
   query MyQuery($data: ID!) {
     post(id: $data, idType: SLUG) {
       home_page_acf {
-        logo {
+        logoBlack {
           sourceUrl
         }
       }
@@ -86,7 +86,7 @@ const Header = () => {
 
   const cms_data = data
     ? {
-        logo: data.post.home_page_acf.logo.sourceUrl,
+        logo: data.post.home_page_acf.logoBlack.sourceUrl,
       }
     : null;
 
@@ -95,10 +95,10 @@ const Header = () => {
 
   const dropdowns_elements =
     categories.length > 0
-      ? categories.map((category) => {
+      ? categories.map((category, index) => {
           if (category.slug === "bez-kategorii") return null;
           return (
-            <NavDropdown.Item className="Header__dropdown--element">
+            <NavDropdown.Item key={index} className="Header__dropdown--element">
               <Link href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
                 {category.name}
               </Link>

@@ -51,8 +51,9 @@ const Products = (props) => {
   console.log(data, "data");
   //const categories = data.productCategories.nodes;
 
-  const products = data.products.nodes.map((product) => (
+  const products = data.products.nodes.map((product, index) => (
     <ProductTile
+      key={index}
       image={product.image.sourceUrl}
       name={product.name}
       price={product.price}
@@ -66,6 +67,7 @@ const Products = (props) => {
   return (
     <>
       <div className="Products container">
+        <h1 className="Products__title">{category}</h1>
         <div className="Products__container row">{products}</div>
         {!pcp ? (
           <div className="Products__read-more">

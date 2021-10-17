@@ -26,6 +26,27 @@ h3 {
   max-width: unset;
 }
 
+.carousel-cell {
+  position: relative;
+
+  @include small {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .fullscreen-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #cdcdcd;
+    padding: 10px 12px;
+
+    svg {
+      font-size: 30px;
+    }
+  }
+}
+
 .products-carousel {
   .carousel-cell {
     width: 100%;

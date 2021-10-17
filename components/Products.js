@@ -6,7 +6,7 @@ import ImgProductCat from "./ImgProductCat";
 
 const POSTS_QUERY = gql`
   query MyQuery($data: String!) {
-    products(where: { category: $data }) {
+    products(where: { category: $data }, first: 1000) {
       nodes {
         name
         slug

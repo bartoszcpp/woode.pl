@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { AppContext } from "./contex/AppContex";
-import { handleAddToCard } from "../functions";
 import Flickity from "react-flickity-component";
-import Select from "./Select";
 import ContactForm from "./ContactForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExpandAlt, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
 const POSTS_QUERY = gql`
   query MyQuery($data: ID!) {
@@ -48,6 +48,8 @@ const IdComponents = (props) => {
     },
   });
 
+  const [isFullScreen, setIsFullScreen] = useState(false);
+
   const scrollToElement = require("scroll-to-element");
 
   if (loading)
@@ -62,17 +64,6 @@ const IdComponents = (props) => {
 
   const product = data.product;
   const gallery_images = data.product.galleryImages.nodes;
-  console.log(gallery_images === null ? "1" : "2", "product");
-  console.log(gallery_images.nodes, "product");
-
-  // let select;
-  // if (data.product.attributes) {
-  //   select = data.product.attributes.nodes.map((attribute) => (
-  //     <Select select={attribute.options} name={attribute.name} />
-  //   ));
-  // } else {
-  //   select = null;
-  // }
 
   const flickity_options = {
     cellAlign: "left",
@@ -83,11 +74,40 @@ const IdComponents = (props) => {
     prevNextButtons: true,
   };
 
+  const handleFullScreen = (close_fullscreen) => {
+    if (!close_fullscreen) {
+      setIsFullScreen(true);
+      return;
+    }
+    setIsFullScreen(false);
+  };
+
   const gallery =
     gallery_images.length > 0
       ? gallery_images.map((image) => (
           <div className="carousel-cell">
             <img className="img-fluid" src={image.sourceUrl} alt={image.slug} />
+            <div
+              className="fullscreen-icon"
+              onClick={() => handleFullScreen(false)}
+            >
+              <FontAwesomeIcon icon={faExpandAlt} />
+            </div>
+          </div>
+        ))
+      : null;
+
+  const gallery_fullscreen =
+    gallery_images.length > 0
+      ? gallery_images.map((image) => (
+          <div className="carousel-cell">
+            <img className="img-fluid" src={image.sourceUrl} alt={image.slug} />
+            <div
+              className="fullscreen-icon"
+              onClick={() => handleFullScreen(true)}
+            >
+              <FontAwesomeIcon icon={faWindowClose} />
+            </div>
           </div>
         ))
       : null;
@@ -104,48 +124,84 @@ const IdComponents = (props) => {
     : null;
 
   return (
-    <div className="container">
-      <div className="ProductOverview">
-        <div className="row products">
-          <div className="col-md-7">
-            {gallery ? (
-              <Flickity
-                className={"products-carousel"}
-                options={flickity_options}
-              >
-                <div className="carousel-cell">
-                  <img
-                    className="img-fluid"
-                    src={product.image ? product.image.sourceUrl : ""}
-                    alt=""
-                  />
-                </div>
-                {gallery}
-              </Flickity>
-            ) : (
-              ""
-            )}
-          </div>
-          <div className="col-md-5 ProductOverview__info">
-            <h3>{product.name}</h3>
-            {floatValue ? <h4>Cena: {floatValue} zł</h4> : ""}
-            <div
-              className="ProductOverview__short-description"
-              dangerouslySetInnerHTML={{ __html: product.shortDescription }}
-            ></div>
+    <>
+      <div className="container">
+        <div className="ProductOverview">
+          <div className="row products">
+            <div className="col-md-7">
+              {gallery ? (
+                <Flickity
+                  className={"products-carousel"}
+                  options={flickity_options}
+                >
+                  <div className="carousel-cell">
+                    <img
+                      className="img-fluid"
+                      src={product.image ? product.image.sourceUrl : ""}
+                      alt=""
+                    />
+                    <div
+                      className="fullscreen-icon"
+                      onClick={() => handleFullScreen(false)}
+                    >
+                      <FontAwesomeIcon icon={faExpandAlt} />
+                    </div>
+                  </div>
+                  {gallery}
+                </Flickity>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="col-md-5 ProductOverview__info">
+              <h3>{product.name}</h3>
+              {floatValue ? <h4>Cena: {floatValue} zł</h4> : ""}
+              <div
+                className="ProductOverview__short-description"
+                dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+              ></div>
 
-            <button className="addToCard" onClick={handleScrollToSection}>
-              ZAMÓW
-            </button>
+              <button className="addToCard" onClick={handleScrollToSection}>
+                ZAMÓW
+              </button>
+            </div>
           </div>
+          <div
+            className="ProductOverview__description"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          ></div>
+          <ContactForm name={product.name} is_pdp={true} />
         </div>
-        <div
-          className="ProductOverview__description"
-          dangerouslySetInnerHTML={{ __html: product.description }}
-        ></div>
-        <ContactForm name={product.name} is_pdp={true} />
       </div>
-    </div>
+      <div
+        className={
+          isFullScreen
+            ? "flickity-placeholder flickity-placeholder-active"
+            : "flickity-placeholder"
+        }
+      >
+        {gallery_fullscreen ? (
+          <Flickity className={"products-carousel"} options={flickity_options}>
+            <div className="carousel-cell">
+              <img
+                className="img-fluid"
+                src={product.image ? product.image.sourceUrl : ""}
+                alt=""
+              />
+              <div
+                className="fullscreen-icon"
+                onClick={() => handleFullScreen(true)}
+              >
+                <FontAwesomeIcon icon={faWindowClose} />
+              </div>
+            </div>
+            {gallery_fullscreen}
+          </Flickity>
+        ) : (
+          ""
+        )}
+      </div>
+    </>
   );
 };
 

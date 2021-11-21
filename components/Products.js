@@ -67,7 +67,7 @@ const Products = (props) => {
   return (
     <>
       <div className="Products container">
-        <h1 className="Products__title">{category}</h1>
+        <h1 className="Products__title">Bestsellery</h1>
         <div className="Products__container row">{products}</div>
         {!pcp ? (
           <div className="Products__read-more">

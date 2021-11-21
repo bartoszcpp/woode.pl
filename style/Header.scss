@@ -25,6 +25,8 @@
   }
 
   .container {
+    max-width: 950px;
+
     @include tablet {
       padding: 0;
       width: 100%;

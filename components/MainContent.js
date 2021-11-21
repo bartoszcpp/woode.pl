@@ -11,6 +11,7 @@ const POSTS_QUERY = gql`
           sourceUrl
         }
         content1Text
+        content2Heading
         content2Image {
           sourceUrl
         }
@@ -72,6 +73,9 @@ const MainContent = () => {
               alt=""
             />
           </div>
+        </div>
+        <div className="Main__header">
+          <h1>{content ? content.content2Heading : null}</h1>
         </div>
         <div className="Main__row row">
           <div className="Main__image col-md-6">

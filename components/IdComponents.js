@@ -156,6 +156,19 @@ const IdComponents = (props) => {
             <div className="col-md-5 ProductOverview__info">
               <h3>{product.name}</h3>
               {floatValue ? <h4>Cena: {floatValue} zł</h4> : ""}
+              <div className="ProductOverview__stock">
+                {product.stockStatus === "ON_BACKORDER" ? (
+                  <div>
+                    <span className="ProductOverview__status--backorder"></span>
+                    <p>Produkt dostępny na zamówienie, kliknij zamów i opisz na czym Ci zalezy a my wykonamy podobny produkt w terminie od 3 do 8 tygodni</p>
+                  </div>
+                ) : (
+                  <div>
+                    <span className="ProductOverview__status--active"></span>
+                    <p>Produkt dostępny od ręki. Czas realizacji do 5 dni roboczych</p>
+                  </div>
+                )}
+              </div>
               <div
                 className="ProductOverview__short-description"
                 dangerouslySetInnerHTML={{ __html: product.shortDescription }}

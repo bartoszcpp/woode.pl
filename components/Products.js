@@ -27,10 +27,28 @@ const POSTS_QUERY = gql`
   }
 `;
 
+const POSTS_QUERY_CATEGORY = gql`
+  query MyQuery($data: ID!) {
+    productCategory(id: $data, idType: SLUG) {
+      name
+    }
+  }
+`;
+
 const Products = (props) => {
   const { category, pcp } = props;
 
   const { loading, error, data } = useQuery(POSTS_QUERY, {
+    variables: {
+      data: category,
+    },
+  });
+
+  const {
+    loading: loading_cat,
+    error: error_cat,
+    data: data_cat,
+  } = useQuery(POSTS_QUERY_CATEGORY , {
     variables: {
       data: category,
     },
@@ -48,7 +66,7 @@ const Products = (props) => {
     );
   if (error) return <p>Something wrong happened!</p>;
 
-  console.log(data, "data");
+  console.log(data, "data4567");
   //const categories = data.productCategories.nodes;
 
   const products = data.products.nodes.map((product, index) => (
@@ -63,11 +81,12 @@ const Products = (props) => {
   ));
 
   const all_collections = "wszystkie";
+  const category_name = category === "home_page" ? "Bestsellery" : data_cat.productCategory.name;
 
   return (
     <>
       <div className="Products container">
-        <h1 className="Products__title">Bestsellery</h1>
+        <h1 className="Products__title">{category_name}</h1>
         <div className="Products__container row">{products}</div>
         {!pcp ? (
           <div className="Products__read-more">

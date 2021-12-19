@@ -1,0 +1,45 @@
+.AboutUs {
+	margin-top: 120px;
+
+	&__heading {
+		margin-bottom: 80px;
+	}
+
+	&__content-text {
+		margin-bottom: 70px;
+
+		&--left {
+			justify-content: left;
+
+			div {
+				text-align: left;
+			}
+		}
+
+		&--right  {
+			justify-content: right;
+
+			div {
+				text-align: right;
+			}
+		}
+
+		&--left,
+		&--right {
+			margin-bottom: 40px;
+		}
+	}
+
+	&__content-black {
+		background-color: #000;
+		padding: 30px;
+
+		div {
+			color: #fff;
+		}
+	}
+
+	&__image {
+		margin-bottom: 70px;
+	}
+}

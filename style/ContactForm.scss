@@ -86,3 +86,18 @@ textarea {
   margin-bottom: 2px;
   text-align: left;
 }
+
+.ContactContainer {
+  .contact {
+    @include small {
+      padding-top: 0 !important;
+      margin-top: 0 !important;
+    }
+  }
+
+  .formularz {
+    @include small {
+      margin-top: 100px;
+    }
+  }
+}

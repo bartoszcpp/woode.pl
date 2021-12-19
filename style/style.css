@@ -60,6 +60,10 @@ p {
   padding: 90px 30px;
 } */
 
+/* .container {
+  max-width: 1180px;
+} */
+
 .navbar {
   background-color: #000000b8;
   z-index: 999999999;

@@ -144,8 +144,8 @@ const Header = () => {
               >
                 {dropdowns_elements}
               </NavDropdown>
-              <Nav.Link href="/contact">O NAS</Nav.Link>
-              <Nav.Link href="/contact">KONTAKT</Nav.Link>
+              <Nav.Link href="/o-nas">O NAS</Nav.Link>
+              <Nav.Link href="/kontakt">KONTAKT</Nav.Link>
               {is_tablet ? (
                 <div className="Header__social-icon">
                   <FontAwesomeIcon icon={faFacebook} />

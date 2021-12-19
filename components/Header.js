@@ -144,7 +144,7 @@ const Header = () => {
               >
                 {dropdowns_elements}
               </NavDropdown>
-              <Nav.Link href="/o-nas">O NAS</Nav.Link>
+              <Nav.Link href="/onas">O NAS</Nav.Link>
               <Nav.Link href="/kontakt">KONTAKT</Nav.Link>
               {is_tablet ? (
                 <div className="Header__social-icon">

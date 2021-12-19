@@ -82,8 +82,8 @@ const Footer = () => {
               <Link href="/[collections]" as={`/kolekcje`}>
                 KOLEKCJE
               </Link>
-              <Link href="/contact">O NAS</Link>
-              <Link href="/contact">KONTAKT</Link>
+              <Nav.Link href="/onas">O NAS</Nav.Link>
+              <Nav.Link href="/kontakt">KONTAKT</Nav.Link>
             </div>
           </div>
           <div className="Footer__row col-md-4">

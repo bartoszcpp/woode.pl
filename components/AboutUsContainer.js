@@ -78,7 +78,7 @@ const AboutUsContainer = () => {
           </div>
         </div>
         <div className="AboutUs__image">
-          <img className="img-fluid" src={content ? content.image.sourceUrl : null}></img>
+          <img className="img-fluid" src={content ? ( content.image ? content.image.sourceUrl : null) : null}></img>
         </div>
         <div className="AboutUs__content-text">
           <div className="AboutUs__content-text--left row">

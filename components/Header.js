@@ -13,6 +13,8 @@ const POSTS_QUERY = gql`
         logoBlack {
           sourceUrl
         }
+        facebook
+        instagram
       }
     }
   }
@@ -74,26 +76,28 @@ const Header = () => {
     data: data_cat,
   } = useQuery(POSTS_QUERY_CATEGORIES);
 
-  if (loading || loading_cat)
-    return (
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  // if (loading || loading_cat)
+  //   return (
+  //     <div className="lds-ring">
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //     </div>
+  //   );
 
   const cms_data = data
     ? {
         logo: data.post.home_page_acf.logoBlack.sourceUrl,
+        facebook: data.post.home_page_acf.facebook,
+        instagram: data.post.home_page_acf.instagram,
       }
     : null;
 
   const categories = data_cat ? data_cat.productCategories.nodes : null;
   console.log(categories, "categories");
 
-  const dropdowns_elements =
+  const  dropdowns_elements = categories ?
     categories.length > 0
       ? categories.map((category, index) => {
           if (category.slug === "bez-kategorii") return null;
@@ -105,7 +109,8 @@ const Header = () => {
             </NavDropdown.Item>
           );
         })
-      : null;
+      : null
+    : null;
 
   return (
     <>
@@ -148,8 +153,8 @@ const Header = () => {
               <Nav.Link href="/kontakt">KONTAKT</Nav.Link>
               {is_tablet ? (
                 <div className="Header__social-icon">
-                  <FontAwesomeIcon icon={faFacebook} />
-                  <FontAwesomeIcon icon={faInstagram} />
+                  <a href={cms_data ? cms_data.facebook : ""}><FontAwesomeIcon icon={faFacebook} /></a>
+                  <a href={cms_data ? cms_data.instagram : ""}><FontAwesomeIcon icon={faInstagram} /></a>
                 </div>
               ) : (
                 ""
@@ -158,8 +163,8 @@ const Header = () => {
           </Navbar.Collapse>
           {!is_tablet ? (
             <div className="Header__social-icon">
-              <FontAwesomeIcon icon={faFacebook} />
-              <FontAwesomeIcon icon={faInstagram} />
+              <a href={cms_data ? cms_data.facebook : ""}><FontAwesomeIcon icon={faFacebook} /></a>
+              <a href={cms_data ? cms_data.instagram : ""}><FontAwesomeIcon icon={faInstagram} /></a>
             </div>
           ) : (
             ""

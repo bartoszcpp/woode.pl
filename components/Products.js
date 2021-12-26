@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import ProductTile from "./ProductTile";
-import ImgProductCat from "./ImgProductCat";
 
 const POSTS_QUERY = gql`
   query MyQuery($data: String!) {
@@ -55,21 +54,19 @@ const Products = (props) => {
   });
 
   //let count = 1;
-  if (loading)
-    return (
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div className="lds-ring">
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //     </div>
+  //   );
+
   if (error) return <p>Something wrong happened!</p>;
 
-  console.log(data, "data4567");
-  //const categories = data.productCategories.nodes;
-
-  const products = data.products.nodes.map((product, index) => (
+  const products = data ? data.products.nodes.map((product, index) => (
     <ProductTile
       key={index}
       image={product.image.sourceUrl}
@@ -78,10 +75,10 @@ const Products = (props) => {
       slug={product.slug}
       gallery_images={product.galleryImages}
     />
-  ));
+  )) : null;
 
   const all_collections = "wszystkie";
-  const category_name = category === "home_page" ? "Bestsellery" : data_cat.productCategory.name;
+  const category_name = category === "home_page" ? "Bestsellery" : (data ? data_cat.productCategory.name : null);
 
   return (
     <>

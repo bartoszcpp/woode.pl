@@ -46,15 +46,15 @@ const BackgroundImage = (props) => {
     autoPlay: true,
   };
 
-  if (loading)
-    return (
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div className="lds-ring">
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //     </div>
+  //   );
 
   if (data) {
     div_style1 = {

@@ -30,15 +30,15 @@ const ContentBlock = (props) => {
     },
   });
 
-  if (loading)
-    return (
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div className="lds-ring">
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //     </div>
+  //   );
 
   if (data) {
     cms_data = {

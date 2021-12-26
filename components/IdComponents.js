@@ -52,18 +52,18 @@ const IdComponents = (props) => {
 
   const scrollToElement = require("scroll-to-element");
 
-  if (loading)
-    return (
-      <div className="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div className="lds-ring">
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //       <div></div>
+  //     </div>
+  //   );
 
-  const product = data.product;
-  const gallery_images = data.product.galleryImages.nodes;
+  const product = data ? data.product : null;
+  const gallery_images = data ? data.product.galleryImages.nodes : null;
 
   const flickity_options = {
     cellAlign: "left",
@@ -82,7 +82,7 @@ const IdComponents = (props) => {
     setIsFullScreen(false);
   };
 
-  const gallery =
+  const gallery = gallery_images ?
     gallery_images.length > 0
       ? gallery_images.map((image) => (
           <div className="carousel-cell">
@@ -95,9 +95,10 @@ const IdComponents = (props) => {
             </div>
           </div>
         ))
-      : null;
+      : null
+    : null;
 
-  const gallery_fullscreen =
+  const gallery_fullscreen = gallery_images ?
     gallery_images.length > 0
       ? gallery_images.map((image) => (
           <div className="carousel-cell">
@@ -110,7 +111,8 @@ const IdComponents = (props) => {
             </div>
           </div>
         ))
-      : null;
+      : null
+    : null;
 
   const handleScrollToSection = () => {
     scrollToElement("#contact_form", {
@@ -119,8 +121,8 @@ const IdComponents = (props) => {
     });
   };
 
-  let floatValue = product.price
-    ? parseInt(product.price.match(/[+-]?\d+(\.\d+)?/g)[0])
+  let floatValue = product
+    ? (product.price ? parseInt(product.price.match(/[+-]?\d+(\.\d+)?/g)[0]) : null)
     : null;
 
   return (
@@ -154,10 +156,10 @@ const IdComponents = (props) => {
               )}
             </div>
             <div className="col-md-5 ProductOverview__info">
-              <h3>{product.name}</h3>
+              <h3>{product ? product.name : null}</h3>
               {floatValue ? <h4>Cena: {floatValue} zł</h4> : ""}
               <div className="ProductOverview__stock">
-                {product.stockStatus === "ON_BACKORDER" ? (
+                {product ? (product.stockStatus === "ON_BACKORDER" ? (
                   <div>
                     <span className="ProductOverview__status--backorder"></span>
                     <p>Produkt dostępny na zamówienie, kliknij zamów i opisz na czym Ci zalezy a my wykonamy podobny produkt w terminie od 3 do 8 tygodni</p>
@@ -167,23 +169,32 @@ const IdComponents = (props) => {
                     <span className="ProductOverview__status--active"></span>
                     <p>Produkt dostępny od ręki. Czas realizacji do 5 dni roboczych</p>
                   </div>
-                )}
+                )) : null}
               </div>
-              <div
-                className="ProductOverview__short-description"
-                dangerouslySetInnerHTML={{ __html: product.shortDescription }}
-              ></div>
+              {product ? 
+                <div
+                  className="ProductOverview__short-description"
+                  dangerouslySetInnerHTML={{ __html: product.shortDescription }}
+                ></div>
+                : null
+              }
 
               <button className="addToCard" onClick={handleScrollToSection}>
                 ZAMÓW
               </button>
             </div>
           </div>
-          <div
-            className="ProductOverview__description"
-            dangerouslySetInnerHTML={{ __html: product.description }}
-          ></div>
-          <ContactForm name={product.name} is_pdp={true} />
+          {product ? 
+            <div
+              className="ProductOverview__description"
+              dangerouslySetInnerHTML={{ __html: product.description }}
+            ></div>
+            : null
+          }
+          {product ? 
+            <ContactForm name={product.name} is_pdp={true} />
+            : null
+          }
         </div>
       </div>
       <div

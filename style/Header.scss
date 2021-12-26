@@ -8,9 +8,14 @@
   &__social-icon {
     margin-left: 10px;
 
+    a {
+      color: #000;
+    }
+
     svg {
       font-size: 24px;
       margin: 0 10px;
+      max-width: 25px;
     }
 
     @include tablet {

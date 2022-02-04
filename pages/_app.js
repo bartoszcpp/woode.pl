@@ -19,7 +19,7 @@ import "flickity/dist/flickity.min.css";
 //import "../style/flickity.css";
 
 const client = new ApolloClient({
-  uri: "https://www.hjtoqkcxxu.cfolks.pl/graphql",
+  uri: "https://wordpress.woode.pl/graphql",
 });
 
 // This default export is required in a new `pages/_app.js` file.

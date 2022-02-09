@@ -496,14 +496,14 @@ p {
     padding: 20px;
   }
 
-  .daneKontaktowe h3,
+  /* .daneKontaktowe h3,
   .daneKontaktowe p {
     text-align: center !important;
   }
   .daneKontaktowe {
     margin: 0;
     text-align: center;
-  }
+  } */
 }
 
 @media (max-width: 575px) {

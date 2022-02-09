@@ -14,6 +14,8 @@ const POSTS_QUERY = gql`
         email
         phoneNumber1
         phoneNumber2
+        facebook
+        instagram
       }
     }
   }
@@ -35,11 +37,11 @@ const ContactContainer = () => {
 
   return (
     <>
-      <div className="ContactContainer row">
-        <div className="col-lg-6 col-sm-8 formularz">
+      <div className="container ContactContainer row">
+        <div className="col-md-6 formularz">
           <ContactForm />
         </div>
-        <div className="col-lg-6 col-sm-4 daneKontaktowe contact">
+        <div className="col-md-6 daneKontaktowe contact">
           <h3>Woode</h3>
           <p className="font-weight-bold">Adres</p>
           <p>{content ? content.address1 : null}</p>
@@ -52,8 +54,8 @@ const ContactContainer = () => {
           <p>{content ? content.phoneNumber1 : null}</p>
           <p>{content ? content.phoneNumber2 : null}</p>
           <div className="ContactContainer__social-icons">
-            <FontAwesomeIcon className="socialIcon" icon={faFacebook} />
-            <FontAwesomeIcon className="socialIcon" icon={faInstagram} />
+            <a href={content ? content.facebook : ""}><FontAwesomeIcon icon={faFacebook} /></a>
+            <a href={content ? content.instagram : ""}><FontAwesomeIcon icon={faInstagram} /></a>
           </div>
         </div>
       </div>

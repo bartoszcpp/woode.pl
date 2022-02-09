@@ -41,5 +41,12 @@
 
 	&__image {
 		margin-bottom: 70px;
+
+		&--names {
+			display: flex;
+			justify-content: center;
+			gap: 100px;
+			margin-top: 10px;
+		}
 	}
 }

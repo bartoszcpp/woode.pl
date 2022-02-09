@@ -76,16 +76,6 @@ const Header = () => {
     data: data_cat,
   } = useQuery(POSTS_QUERY_CATEGORIES);
 
-  // if (loading || loading_cat)
-  //   return (
-  //     <div className="lds-ring">
-  //       <div></div>
-  //       <div></div>
-  //       <div></div>
-  //       <div></div>
-  //     </div>
-  //   );
-
   const cms_data = data
     ? {
         logo: data.post.home_page_acf.logoBlack.sourceUrl,

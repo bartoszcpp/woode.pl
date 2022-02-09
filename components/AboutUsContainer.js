@@ -79,6 +79,10 @@ const AboutUsContainer = () => {
         </div>
         <div className="AboutUs__image">
           <img className="img-fluid" src={content ? ( content.image ? content.image.sourceUrl : null) : null}></img>
+          <div className="AboutUs__image--names">
+            <span>Dominik Tkacz</span>
+            <span>Lucjan Szmuc</span>
+          </div>
         </div>
         <div className="AboutUs__content-text">
           <div className="AboutUs__content-text--left row">

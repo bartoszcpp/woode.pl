@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import LazyLoad from 'react-lazyload';
 
 const POSTS_QUERY = gql`
   query MyQuery($data: ID!) {
@@ -63,15 +64,17 @@ const MainContent = () => {
             </div>
           </div>
           <div className="Main__image col-md-6">
-            <img
-              className="img-fluid"
-              src={
-                content && content.content1Image
-                  ? content.content1Image.sourceUrl
-                  : null
-              }
-              alt=""
-            />
+            <LazyLoad height={200}>
+              <img
+                className="img-fluid"
+                src={
+                  content && content.content1Image
+                    ? content.content1Image.sourceUrl
+                    : null
+                }
+                alt=""
+              />
+            </LazyLoad>
           </div>
         </div>
         <div className="Main__header">
@@ -79,15 +82,17 @@ const MainContent = () => {
         </div>
         <div className="Main__row row">
           <div className="Main__image col-md-6">
-            <img
-              className="img-fluid"
-              src={
-                content && content.content2Image
-                  ? content.content2Image.sourceUrl
-                  : null
-              }
-              alt=""
-            />
+            <LazyLoad height={200}>
+              <img
+                className="img-fluid"
+                src={
+                  content && content.content2Image
+                    ? content.content2Image.sourceUrl
+                    : null
+                }
+                alt=""
+              />
+            </LazyLoad>
           </div>
           <div className="Main__content col-md-6">
             <div className="Main__text">
@@ -112,15 +117,17 @@ const MainContent = () => {
             </div>
           </div>
           <div className="Main__image col-md-6">
-            <img
-              className="img-fluid"
-              src={
-                content && content.content3Image
-                  ? content.content3Image.sourceUrl
-                  : null
-              }
-              alt=""
-            />
+            <LazyLoad height={200}>
+              <img
+                className="img-fluid"
+                src={
+                  content && content.content3Image
+                    ? content.content3Image.sourceUrl
+                    : null
+                }
+                alt=""
+              />
+            </LazyLoad>
           </div>
         </div>
       </div>

@@ -85,12 +85,11 @@ const Header = () => {
     : null;
 
   const categories = data_cat ? data_cat.productCategories.nodes : null;
-  console.log(categories, "categories");
 
   const  dropdowns_elements = categories ?
     categories.length > 0
       ? categories.map((category, index) => {
-          if (category.slug === "bez-kategorii") return null;
+          if (category.slug === "bez-kategorii" || category.slug === "home_page") return null;
           return (
             <NavDropdown.Item key={index} className="Header__dropdown--element">
               <Link href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>

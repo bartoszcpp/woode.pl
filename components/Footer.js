@@ -56,7 +56,7 @@ const Footer = () => {
   const categories_elements =
     categories && categories.length > 0
       ? categories.map((category, index) => {
-          if (category.slug === "bez-kategorii") return null;
+          if (category.slug === "bez-kategorii" || category.slug === "home_page") return null;
           return (
             <Link key={index} href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
               {category.name}

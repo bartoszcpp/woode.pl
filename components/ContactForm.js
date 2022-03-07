@@ -10,10 +10,12 @@ class ContactForm extends Component {
       email: "",
       message: "",
       info: "",
+      disabled: false,
     };
   }
 
   render() {
+    console.log("this.props.subject", this.props.name)
     return (
       <div id="contact_form" className="container">
         <div className="contact">
@@ -22,53 +24,59 @@ class ContactForm extends Component {
           )}
           {!this.props.is_pdp && <h2>Skontaktuj się z nami!</h2>}
           <form className="form" method="POST" encType="multipart/form-data">
-            <input
-              type="text"
-              id="fname"
-              name="firstname"
-              placeholder="Imie"
-              value={this.state.fname}
-              onChange={(e) => this.setState({ fname: e.target.value })}
-            />
-            {this.props.is_pdp && (
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                value={`Temat: ${this.props.name}`}
-              />
+            {!this.state.disabled && (
+              <>
+                <input
+                  type="text"
+                  id="fname"
+                  name="firstname"
+                  placeholder="Imię"
+                  value={this.state.fname}
+                  onChange={(e) => this.setState({ fname: e.target.value })}
+                />
+                {this.props.is_pdp && (
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={`Temat: ${this.props.name}`}
+                    onChange={(e) => this.setState({ subject: e.target.value })}
+                  />
+                )}
+                {!this.props.is_pdp && (
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="Temat"
+                    value={this.state.subject}
+                    onChange={(e) => this.setState({ subject: e.target.value })}
+                  />
+                )}
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChange={(e) => this.setState({ email: e.target.value })}
+                />
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Wiadomość"
+                  onChange={(e) => this.setState({ message: e.target.value })}
+                  value={this.state.message}
+                ></textarea>
+                <button
+                  className="submit btn-mod btn-border btn-large"
+                  onClick={(e) => this.handleFormSubmit(e)}
+                  disabled={this.state.disabled}
+                >
+                  WYŚLIJ WIADOMOŚĆ
+                </button>
+              </>
             )}
-            {!this.props.is_pdp && (
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                placeholder="Temat"
-                value={this.state.subject}
-                onChange={(e) => this.setState({ subject: e.target.value })}
-              />
-            )}
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={(e) => this.setState({ email: e.target.value })}
-            />
-            <textarea
-              id="message"
-              name="message"
-              placeholder="Wiadomość"
-              onChange={(e) => this.setState({ message: e.target.value })}
-              value={this.state.message}
-            ></textarea>
-            <button
-              className="submit btn-mod btn-border btn-large"
-              onClick={(e) => this.handleFormSubmit(e)}
-            >
-              WYŚLIJ WIADOMOŚĆ
-            </button>
             <p>{this.state.info}</p>
           </form>
         </div>
@@ -90,18 +98,20 @@ class ContactForm extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
+    console.log("SASAS", this.state.subject)
     axios({
       method: "post",
-      url: "https://getform.io/f/d9ed422f-e4d4-4ba3-adeb-7426c57d5898",
+      url: "https://getform.io/f/66618d8b-6b19-4662-9504-373f1f3369af",
       data: {
         nazwa: this.state.fname,
-        temat: this.state.subject,
+        temat: this.props.is_pdp ? this.props.name : this.state.subject,
         email: this.state.email,
         wiadomość: this.state.message,
       },
     })
       .then((r) => {
         this.setState({ info: "Dziękujemy!" });
+        this.setState({ disabled: true });
       })
       .catch((r) => {
         this.setState({ info: "Coś poszło nie tak :(" });

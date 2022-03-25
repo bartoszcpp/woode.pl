@@ -78,7 +78,7 @@ const Products = (props) => {
   )) : null;
 
   const all_collections = "wszystkie";
-  const category_name = category === "home_page" ? "Bestsellery" : (data ? data_cat.productCategory.name : null);
+  const category_name = category === "home_page" ? "Bestsellery" : (data ? data_cat?.productCategory.name : null);
 
   return (
     <>

@@ -16,17 +16,17 @@ const POSTS_QUERY = gql`
   }
 `;
 
-const POSTS_QUERY_CATEGORIES = gql`
-  {
-    productCategories(first: 1000) {
-      nodes {
-        id
-        image {
-          altText
-          sourceUrl
-        }
-        slug
-        name
+const POSTS_QUERY_CONTACT = gql`
+  query MyQuery($data: ID!) {
+    post(id: $data, idType: SLUG) {
+      contact_acf {
+        address1
+        address2
+        email
+        phoneNumber1
+        phoneNumber2
+        facebook
+        instagram
       }
     }
   }
@@ -39,11 +39,11 @@ const Footer = () => {
     },
   });
 
-  const {
-    loading: loading_cat,
-    error: error_cat,
-    data: data_cat,
-  } = useQuery(POSTS_QUERY_CATEGORIES);
+  const { loading: loading_cont, error: error_cont, data: data_cont } = useQuery(POSTS_QUERY_CONTACT, {
+    variables: {
+      data: "kontakt",
+    },
+  });
 
   const cms_data = data
     ? {
@@ -51,19 +51,15 @@ const Footer = () => {
       }
     : null;
 
-  const categories = data_cat ? data_cat.productCategories.nodes : null;
+  const contact_data = data_cont
+    ? {
+        contact: data_cont.post.contact_acf,
+      }
+    : null;
+  
 
-  const categories_elements =
-    categories && categories.length > 0
-      ? categories.map((category, index) => {
-          if (category.slug === "bez-kategorii" || category.slug === "home_page") return null;
-          return (
-            <Link key={index} href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
-              {category.name}
-            </Link>
-          );
-        })
-      : null;
+  console.log("contact_data", contact_data)
+  console.log("data_cont", data_cont)
 
   return (
     <footer>
@@ -87,7 +83,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="Footer__row col-md-4">
-            <div className="Footer__menu">{categories_elements}</div>
+            <p className="font-weight-bold">E-mail:</p>
+            <p>{contact_data?.contact?.email}</p>
+            <br />
+            <p className="font-weight-bold">Telefon:</p>
+            <p>{contact_data?.contact?.phoneNumber1}</p>
+            <p>{contact_data?.contact?.phoneNumber2}</p>
           </div>
         </div>
       </div>

@@ -86,6 +86,11 @@ const Header = () => {
 
   const categories = data_cat ? data_cat.productCategories.nodes : null;
 
+  const categoriesInne = categories?.findIndex(category => category.slug === 'inne');
+  const categoriesWszystkie = categories?.findIndex(category => category.slug === 'wszystkie');
+  categories?.push(categories?.splice(categoriesInne, 1)[0]);
+  categories?.push(categories?.splice(categoriesWszystkie, 1)[0]);
+
   const  dropdowns_elements = categories ?
     categories.length > 0
       ? categories.map((category, index) => {

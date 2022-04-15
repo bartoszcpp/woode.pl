@@ -22,17 +22,17 @@ const POSTS_QUERY = gql`
 `;
 
 const BackgroundImage = (props) => {
-  let div_style1 = {
-    backgroundImage: "",
-  };
+  // let div_style1 = {
+  //   backgroundImage: "",
+  // };
 
-  let div_style2 = {
-    backgroundImage: "",
-  };
+  // let div_style2 = {
+  //   backgroundImage: "",
+  // };
 
-  let div_style3 = {
-    backgroundImage: "",
-  };
+  // let div_style3 = {
+  //   backgroundImage: "",
+  // };
 
   const { loading, error, data } = useQuery(POSTS_QUERY, {
     variables: {
@@ -46,27 +46,21 @@ const BackgroundImage = (props) => {
     autoPlay: true,
   };
 
-  // if (loading)
-  //   return (
-  //     <div className="lds-ring">
-  //       <div></div>
-  //       <div></div>
-  //       <div></div>
-  //       <div></div>
-  //     </div>
-  //   );
-
-  if (data) {
-    div_style1 = {
-      backgroundImage: `url(${data.post.home_page_acf.backgroundImage1.sourceUrl})`,
+    const div_style1 = {
+      backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2022/02/stol-okragly-kuchenny-jadalniany-orzech-wloski-niebieska-zywica-3.jpg)`,
     };
-    div_style2 = {
-      backgroundImage: `url(${data.post.home_page_acf.backgroundImage2.sourceUrl})`,
+    const div_style2 = {
+      backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/stolik-kawowy-czeczota-topoli-niebieska-zywica-5-e1648665387720.jpg)`,
     };
-    div_style3 = {
-      backgroundImage: `url(${data.post.home_page_acf.backgroundImage3.sourceUrl})`,
+    const div_style3 = {
+      backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/lozko-stara-belka-stara-deska-1.jpg)`,
     };
-  }
+    // const div_style4 = {
+    //   backgroundImage: `url(${data.post.home_page_acf.backgroundImage3.sourceUrl})`,
+    // };
+    // const div_style5 = {
+    //   backgroundImage: `url(${data.post.home_page_acf.backgroundImage3.sourceUrl})`,
+    // };
 
   return (
     <Flickity className={"background-carousel"} options={flickity_options}>

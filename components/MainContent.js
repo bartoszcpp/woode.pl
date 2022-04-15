@@ -55,58 +55,50 @@ const MainContent = () => {
     <div className="MainContent">
       <div className="container">
         <div className="Main__header">
-          <h1>{content ? content.content1Heading : null}</h1>
+          <h1>RĘCZNA PRODUKCJA</h1>
         </div>
         <div className="Main__row row">
           <div className="Main__content col-md-6">
             <div className="Main__text">
-              {content ? content.content1Text : null}
+              Starannie dobieramy, wycinamy i łączymy poszczególne elementy, aby mogły tworzyć niezniszczalne, solidne konstrukcje. Z pasją dobieramy odpowiednie dodatki wizualne, aby nasze stolarskie dzieła były jeszcze bardziej wyjątkowe.
             </div>
           </div>
           <div className="Main__image col-md-6">
             <LazyLoad height={200}>
               <img
                 className="img-fluid"
-                src={
-                  content && content.content1Image
-                    ? content.content1Image.sourceUrl
-                    : null
-                }
+                src='https://wordpress.woode.pl/wp-content/uploads/2021/09/stara-beczka-debowa-szklo-hartowane-6.jpg'
                 alt=""
               />
             </LazyLoad>
           </div>
         </div>
         <div className="Main__header">
-          <h1>{content ? content.content2Heading : null}</h1>
+          <h1>SZACUNEK DO NATURY</h1>
         </div>
         <div className="Main__row row">
           <div className="Main__image col-md-6">
             <LazyLoad height={200}>
               <img
                 className="img-fluid"
-                src={
-                  content && content.content2Image
-                    ? content.content2Image.sourceUrl
-                    : null
-                }
+                src='https://wordpress.woode.pl/wp-content/uploads/2021/09/toaletka-loft-stary-stol-stolarski-stare-belki-oswietlenie-10.jpg'
                 alt=""
               />
             </LazyLoad>
           </div>
           <div className="Main__content col-md-6">
             <div className="Main__text">
-              {content ? content.content2Text : null}
+              Do daru natury jakim jest drewno, podchodzimy z pokorą i szacunkiem, dlatego też jedną z głównych idei naszej działalności jest ponowne przetwórstwo.
             </div>
           </div>
         </div>
         <div className="Main__header">
-          <h1>{content ? content.content3Heading : null}</h1>
+          <h1>MEBLE NA ŻYCZENIE</h1>
         </div>
         <div className="row">
           <div className="Main__content col-md-6">
             <div className="Main__text">
-              {content ? content.content3Text : null}
+              Staramy się spełniać oczekiwania, a nawet być ponad nimi. Tworzymy na specjalne życzenie klientów, chcąc urzeczywistnić ich wizje.
             </div>
             <div className="Main__contact-btn">
               <button className="btn-more__container">
@@ -120,11 +112,7 @@ const MainContent = () => {
             <LazyLoad height={200}>
               <img
                 className="img-fluid"
-                src={
-                  content && content.content3Image
-                    ? content.content3Image.sourceUrl
-                    : null
-                }
+                src='https://wordpress.woode.pl/wp-content/uploads/2022/02/stol-do-jadalni-czeczota-topoli-szyba-hartowana-9.jpg'
                 alt=""
               />
             </LazyLoad>

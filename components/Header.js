@@ -113,7 +113,7 @@ const Header = () => {
           <Navbar.Brand className="Header__logo" href="/">
             <img
               className="img-fluid logoPng"
-              src={cms_data ? cms_data.logo : ""}
+              src='https://wordpress.woode.pl/wp-content/uploads/2021/08/logo_black.png'
               alt=""
             />{" "}
           </Navbar.Brand>

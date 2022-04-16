@@ -125,14 +125,20 @@ const Header = () => {
                 className="Header__dropdown Header__dropdown--desktop"
                 onMouseEnter={showDropdown}
               >
+                <span></span>
                 <Link href="/[collections]" as={`/kolekcje`}>
                   {is_tablet ? "KOLEKCJE" : "OFERTA"}
                 </Link>
+                <span></span>
               </div>
               {is_tablet ? (
-                <div className="Header__dropdown" onClick={showDropdown}>
-                  OFERTA
-                </div>
+                <>
+                  <span></span>
+                  <div className="Header__dropdown oferta" onClick={showDropdown}>
+                    OFERTA
+                  </div>
+                  <span></span>
+                </>
               ) : (
                 ""
               )}

@@ -2,7 +2,7 @@
 $main-color: #000;
 
 @mixin tablet {
-  @media (min-width: 769px) and (max-width: 1024px) {
+  @media (min-width: 769px) and (max-width: 991px) {
     @content;
   }
 }

@@ -22,18 +22,6 @@ const POSTS_QUERY = gql`
 `;
 
 const BackgroundImage = (props) => {
-  // let div_style1 = {
-  //   backgroundImage: "",
-  // };
-
-  // let div_style2 = {
-  //   backgroundImage: "",
-  // };
-
-  // let div_style3 = {
-  //   backgroundImage: "",
-  // };
-
   const { loading, error, data } = useQuery(POSTS_QUERY, {
     variables: {
       data: "home_page",
@@ -43,45 +31,38 @@ const BackgroundImage = (props) => {
   const flickity_options = {
     pageDots: false,
     wrapAround: true,
-    autoPlay: true,
+    autoPlay: 2000,
+    pauseAutoPlayOnHover: false,
   };
 
-    const div_style1 = {
-      backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2022/02/stol-okragly-kuchenny-jadalniany-orzech-wloski-niebieska-zywica-3.jpg)`,
-    };
-    const div_style2 = {
-      backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/stolik-kawowy-czeczota-topoli-niebieska-zywica-5-e1648665387720.jpg)`,
-    };
-    const div_style3 = {
-      backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/lozko-stara-belka-stara-deska-1.jpg)`,
-    };
-    // const div_style4 = {
-    //   backgroundImage: `url(${data.post.home_page_acf.backgroundImage3.sourceUrl})`,
-    // };
-    // const div_style5 = {
-    //   backgroundImage: `url(${data.post.home_page_acf.backgroundImage3.sourceUrl})`,
-    // };
+    const backgroundImages = [
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2022/02/stol-okragly-kuchenny-jadalniany-orzech-wloski-niebieska-zywica-3.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/stolik-kawowy-czeczota-topoli-niebieska-zywica-5-e1648665387720.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/lozko-stara-belka-stara-deska-1.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2022/02/zegar-orzech-wloski-biala-metalowa-obrecz-2.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/10/stolik-nocny-stolik-kawowy-orzech-wloski-plastry-miodu-10.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/09/stara-beczka-debowa-szklo-hartowane-15.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/09/lustro-czeczot-topola-naturalny-oflis-2.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/09/stolik-kawowy-orzech-wloski-czarna-zywica-nogi-blacha-4.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2021/09/toaletka-loft-stary-stol-stolarski-stare-belki-oswietlenie-15.jpg)`},
+      {backgroundImage: `url(https://wordpress.woode.pl/wp-content/uploads/2022/02/stol-do-jadalni-czeczota-topoli-szyba-hartowana-9.jpg)`},
+    ]
+
+    console.log("backgroundImages", backgroundImages)
+    console.log("backgroundImages. len", backgroundImages.length)
+
+    const backgroundImagesContent = backgroundImages.map(item => (
+      <div className="carousel-cell">
+        <div className="Hero" style={item || null}>
+          <div className="Hero__overlay"></div>
+          <div className="Hero__content"></div>
+        </div>
+      </div>
+    ))
 
   return (
     <Flickity className={"background-carousel"} options={flickity_options}>
-      <div className="carousel-cell">
-        <div className="Hero" style={div_style1 || null}>
-          <div className="Hero__overlay"></div>
-          <div className="Hero__content"></div>
-        </div>
-      </div>
-      <div className="carousel-cell">
-        <div className="Hero" style={div_style2 || null}>
-          <div className="Hero__overlay"></div>
-          <div className="Hero__content"></div>
-        </div>
-      </div>
-      <div className="carousel-cell">
-        <div className="Hero" style={div_style3 || null}>
-          <div className="Hero__overlay"></div>
-          <div className="Hero__content"></div>
-        </div>
-      </div>
+      {backgroundImagesContent}
     </Flickity>
   );
 };

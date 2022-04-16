@@ -76,6 +76,14 @@
       }
     }
 
+    @include tablet {
+      padding: 16px;
+    }
+
+    @include small {
+      padding: 16px;
+    }
+
     &::after {
       display: inline-block;
       margin-left: 0.255em;
@@ -177,6 +185,32 @@
           padding: 0;
         }
       }
+    }
+
+    @include tablet {
+      span {
+        height: 16px;
+      }
+    }
+
+    @include small {
+      * {
+        font-size: 22px;
+      }
+
+      span {
+        height: 16px;
+      }
+    }
+  }
+
+  .nav-link {
+    @include tablet {
+      padding: 16px;
+    }
+
+    @include small {
+      padding: 16px;
     }
   }
 }

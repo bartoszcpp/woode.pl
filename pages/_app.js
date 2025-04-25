@@ -43,7 +43,6 @@ export default function MyApp({ Component, pageProps }) {
       const banner = document.querySelector(".cky-consent-container");
 
       if (!banner) {
-        // CookieYes w ogóle nie pokazał bannera (czyli użytkownik już coś wybrał wcześniej)
         setBannerVisible(false);
         return;
       }
@@ -52,13 +51,18 @@ export default function MyApp({ Component, pageProps }) {
       setBannerVisible(!isHidden);
     };
 
+    checkBanner();
+
     const observer = new MutationObserver(checkBanner);
     observer.observe(document.body, { childList: true, subtree: true });
 
-    // Bezpieczne pierwsze sprawdzenie (po 1s na wszelki wypadek)
-    setTimeout(checkBanner, 1000);
+    const interval = setInterval(checkBanner, 1000);
+    setTimeout(() => clearInterval(interval), 10000);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearInterval(interval);
+    };
   }, []);
 
   return (

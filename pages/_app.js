@@ -72,10 +72,7 @@ export default function MyApp({ Component, pageProps }) {
                 marginTop: "20%",
                 padding: "0 20px",
               }}
-            >
-              Proszę wybrać ustawienia cookies, aby kontynuować korzystanie ze
-              strony.
-            </div>
+            />
           </div>
         )}
         <div

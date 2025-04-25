@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   /* font-family: "Roboto Mono", monospace;
   font-family: "Merriweather", serif; */
   text-align: center;
@@ -536,7 +536,7 @@ p {
   }
   .daneKontaktowe,
   .contact {
-    padding: 70px 10px !important;
+    padding: 70px 10px 0 !important;
   }
 }
 
@@ -591,7 +591,6 @@ p {
 }
 
 @media (min-width: 768px) {
-  .container,
   .container-sm,
   .container-md {
     max-width: max-content;

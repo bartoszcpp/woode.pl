@@ -38,10 +38,12 @@ const POSTS_QUERY_CATEGORIES = gql`
 
 const Header = () => {
   const [show, setShow] = useState(false);
-  const showDropdown = (e) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const showDropdown = () => {
     setShow(!show);
   };
-  const hideDropdown = (e) => {
+  const hideDropdown = () => {
     setShow(false);
   };
 
@@ -64,17 +66,13 @@ const Header = () => {
     is_tablet = false;
   }
 
-  const { loading, error, data } = useQuery(POSTS_QUERY, {
+  const { data } = useQuery(POSTS_QUERY, {
     variables: {
       data: "home_page",
     },
   });
 
-  const {
-    loading: loading_cat,
-    error: error_cat,
-    data: data_cat,
-  } = useQuery(POSTS_QUERY_CATEGORIES);
+  const { data: data_cat } = useQuery(POSTS_QUERY_CATEGORIES);
 
   const cms_data = data
     ? {
@@ -86,19 +84,33 @@ const Header = () => {
 
   const categories = data_cat ? data_cat.productCategories.nodes : null;
 
-  const categoriesInne = categories?.findIndex(category => category.slug === 'inne');
-  const categoriesWszystkie = categories?.findIndex(category => category.slug === 'wszystkie');
+  const categoriesInne = categories?.findIndex(
+    (category) => category.slug === "inne"
+  );
+  const categoriesWszystkie = categories?.findIndex(
+    (category) => category.slug === "wszystkie"
+  );
   categories?.push(categories?.splice(categoriesInne, 1)[0]);
   categories?.push(categories?.splice(categoriesWszystkie, 1)[0]);
 
-  const  dropdowns_elements = categories ?
-    categories.length > 0
+  const dropdowns_elements = categories
+    ? categories.length > 0
       ? categories.map((category, index) => {
-          if (category.slug === "bez-kategorii" || category.slug === "home_page") return null;
+          if (
+            category.slug === "bez-kategorii" ||
+            category.slug === "home_page"
+          )
+            return null;
           return (
             <NavDropdown.Item key={index} className="Header__dropdown--element">
               <Link href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
-                {category.name}
+                <a
+                  onClick={() => {
+                    setExpanded(false);
+                  }}
+                >
+                  {category.name}
+                </a>
               </Link>
             </NavDropdown.Item>
           );
@@ -108,12 +120,18 @@ const Header = () => {
 
   return (
     <>
-      <Navbar className="Header navbar" fixed="top" expand="lg">
+      <Navbar
+        className="Header navbar"
+        fixed="top"
+        expand="lg"
+        expanded={expanded}
+        onToggle={setExpanded}
+      >
         <div className="container justify-content-between">
           <Navbar.Brand className="Header__logo" href="/">
             <img
               className="img-fluid logoPng"
-              src='https://wordpress.woode.pl/wp-content/uploads/2021/08/logo_black.png'
+              src="https://wordpress.woode.pl/wp-content/uploads/2021/08/logo_black.png"
               alt=""
             />{" "}
           </Navbar.Brand>
@@ -134,7 +152,10 @@ const Header = () => {
               {is_tablet ? (
                 <>
                   <span></span>
-                  <div className="Header__dropdown oferta" onClick={showDropdown}>
+                  <div
+                    className="Header__dropdown oferta"
+                    onClick={showDropdown}
+                  >
                     OFERTA
                   </div>
                   <span></span>
@@ -153,8 +174,12 @@ const Header = () => {
               <Nav.Link href="/kontakt">KONTAKT</Nav.Link>
               {is_tablet ? (
                 <div className="Header__social-icon">
-                  <a href={cms_data ? cms_data.facebook : ""}><FontAwesomeIcon icon={faFacebook} /></a>
-                  <a href={cms_data ? cms_data.instagram : ""}><FontAwesomeIcon icon={faInstagram} /></a>
+                  <a href={cms_data ? cms_data.facebook : ""}>
+                    <FontAwesomeIcon icon={faFacebook} />
+                  </a>
+                  <a href={cms_data ? cms_data.instagram : ""}>
+                    <FontAwesomeIcon icon={faInstagram} />
+                  </a>
                 </div>
               ) : (
                 ""
@@ -163,8 +188,12 @@ const Header = () => {
           </Navbar.Collapse>
           {!is_tablet ? (
             <div className="Header__social-icon">
-              <a href={cms_data ? cms_data.facebook : ""}><FontAwesomeIcon icon={faFacebook} /></a>
-              <a href={cms_data ? cms_data.instagram : ""}><FontAwesomeIcon icon={faInstagram} /></a>
+              <a href={cms_data ? cms_data.facebook : ""}>
+                <FontAwesomeIcon icon={faFacebook} />
+              </a>
+              <a href={cms_data ? cms_data.instagram : ""}>
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
             </div>
           ) : (
             ""

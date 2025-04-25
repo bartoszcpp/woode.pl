@@ -17,12 +17,11 @@ export const handleAddToCard = (
   let existProduct = localStorage.getItem("item"); //sprawdza czy jest jakis produkt
   let totalLocalPrice = parseInt(price);
   let totalLocalCount = parseInt(count);
-  console.log(product);
+
   product = JSON.stringify(product);
   // jesli produkt juz jakis jest
   if (existProduct) {
     let allStorageProduct = cart;
-    console.log(allStorageProduct);
 
     //sprawdza czy produkt juz jest
     const first = allStorageProduct.findIndex(
@@ -42,16 +41,13 @@ export const handleAddToCard = (
       product["totalProductPrice"] = totalProductPrice;
 
       allStorageProduct[first] = { product: product };
-      console.log(typeof product);
 
       totalLocalPrice = totalLocalPrice + floatValue;
       togglePrice(totalLocalPrice);
 
       totalLocalCount = totalLocalCount + 1;
       toggleCount(totalLocalCount);
-      console.log(allStorageProduct);
       toggleCart(allStorageProduct);
-      console.log("haga");
     } else {
       product = JSON.parse(product);
       product["totalProductCount"] = 1;
@@ -59,7 +55,6 @@ export const handleAddToCard = (
       allStorageProduct.push({ product: product });
 
       totalLocalPrice = totalLocalPrice + floatValue;
-      console.log(totalLocalPrice);
       togglePrice(totalLocalPrice);
 
       totalLocalCount = totalLocalCount + 1;

@@ -37,17 +37,13 @@ const POSTS_QUERY_CATEGORY = gql`
 const Products = (props) => {
   const { category, pcp } = props;
 
-  const { loading, error, data } = useQuery(POSTS_QUERY, {
+  const { error, data } = useQuery(POSTS_QUERY, {
     variables: {
       data: category,
     },
   });
 
-  const {
-    loading: loading_cat,
-    error: error_cat,
-    data: data_cat,
-  } = useQuery(POSTS_QUERY_CATEGORY , {
+  const { data: data_cat } = useQuery(POSTS_QUERY_CATEGORY, {
     variables: {
       data: category,
     },
@@ -66,19 +62,26 @@ const Products = (props) => {
 
   if (error) return <p>Something wrong happened!</p>;
 
-  const products = data ? data.products.nodes.map((product, index) => (
-    <ProductTile
-      key={index}
-      image={product.image.sourceUrl}
-      name={product.name}
-      price={product.price}
-      slug={product.slug}
-      gallery_images={product.galleryImages}
-    />
-  )) : null;
+  const products = data
+    ? data.products.nodes.map((product, index) => (
+        <ProductTile
+          key={index}
+          image={product.image.sourceUrl}
+          name={product.name}
+          price={product.price}
+          slug={product.slug}
+          gallery_images={product.galleryImages}
+        />
+      ))
+    : null;
 
   const all_collections = "wszystkie";
-  const category_name = category === "home_page" ? "Bestsellery" : (data ? data_cat?.productCategory.name : null);
+  const category_name =
+    category === "home_page"
+      ? "Bestsellery"
+      : data
+      ? data_cat?.productCategory.name
+      : null;
 
   return (
     <>

@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Flickity from "react-flickity-component";
 
 const ProductTile = (props) => {
   const { image, name, price, slug, gallery_images } = props;
@@ -25,7 +24,7 @@ const ProductTile = (props) => {
   ));
 
   return (
-    <div className="ProductTile col-md-6 row">
+    <div className="ProductTile col-xl-6 row">
       <div className="col-md-7 ProductTile__img">
         <img className="img-fluid" src={image} alt={name} />
       </div>

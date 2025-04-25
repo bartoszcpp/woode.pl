@@ -3,6 +3,10 @@
 .ProductOverview {
   .products {
     margin-top: 110px;
+
+    @include micro {
+      margin-top: 0;
+    }
   }
 
   &__stock {

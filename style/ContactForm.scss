@@ -3,7 +3,7 @@
 .contact {
   margin-top: 50px;
   text-align: center;
-  padding: 70px;
+  padding: 100px 70px;
 }
 .form {
   text-align: center;
@@ -103,11 +103,16 @@ textarea {
   margin: auto;
 
   @include small {
-    //padding-top: 100px;
+    gap: 30px;
   }
 
   &__social-icons {
+    margin-top: 30px;
     text-align: left;
+
+    @include small {
+      text-align: center;
+    }
 
     a {
       font-size: 40px;

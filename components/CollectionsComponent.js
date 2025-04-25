@@ -1,6 +1,6 @@
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 
 const POSTS_QUERY = gql`
@@ -20,7 +20,7 @@ const POSTS_QUERY = gql`
 `;
 
 const CollectionsComponent = () => {
-  const { loading, error, data } = useQuery(POSTS_QUERY);
+  const { data } = useQuery(POSTS_QUERY);
   const categories = data ? data.productCategories.nodes : null;
 
   const list_of_categories = categories
@@ -28,7 +28,7 @@ const CollectionsComponent = () => {
         if (category.slug === "bez-kategorii" || category.slug === "home_page")
           return null;
         return (
-          <div className="col-md-4 CategoryTile">
+          <div className="col-xl-4 CategoryTile">
             <Link href="/kolekcje/[cat]" as={`/kolekcje/${category.slug}`}>
               <div className="CategoryTile__container">
                 {category.image ? (

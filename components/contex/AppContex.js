@@ -22,8 +22,6 @@ export const AppProvider = (props) => {
 
   const toggleCart = (value) => {
     setCart(value);
-    console.log(value);
-    console.log(JSON.stringify(value));
     if (process.browser) {
       localStorage.setItem("item", JSON.stringify(value));
     }
@@ -32,15 +30,12 @@ export const AppProvider = (props) => {
   useEffect(() => {
     if (process.browser) {
       let existProduct = localStorage.getItem("item");
-      console.log(existProduct);
       let totalPrice = localStorage.getItem("totalPrice");
       let totalCount = localStorage.getItem("totalCount");
 
       if (existProduct !== "") {
         let allProductStorage = JSON.parse(existProduct);
         setCart(allProductStorage);
-      } else {
-        console.log("dsdaddds");
       }
 
       setPrice(totalPrice);

@@ -4,7 +4,6 @@ const Select = (props) => {
   const { select, name } = props;
   const [currentSelect, setCurrentSelect] = useState(select[0]);
 
-  console.log(currentSelect);
   return (
     <>
       <h3>{name}</h3>

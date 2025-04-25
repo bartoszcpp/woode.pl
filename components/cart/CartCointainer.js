@@ -1,5 +1,4 @@
 import Header from "../Header";
-import BackgroundImage from "../BackgroungImage";
 import CartItem from "./CartItem";
 import { useContext } from "react";
 import { AppContext } from "../contex/AppContex";
@@ -9,8 +8,6 @@ const CartContainer = () => {
   const { cart, toggleCart, price, togglePrice, count, toggleCount } =
     useContext(AppContext);
 
-  console.log(cart);
-  console.log(price);
   return (
     <>
       <Header />

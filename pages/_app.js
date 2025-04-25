@@ -40,15 +40,25 @@ export default function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const checkBanner = () => {
-      const el = document.getElementById("cky-consent-banner");
-      const isVisible = el && window.getComputedStyle(el).display !== "none";
-      setBannerVisible(!!isVisible);
+      const banner = document.querySelector(".cky-consent-container");
+
+      if (!banner) {
+        // CookieYes w ogóle nie pokazał bannera (czyli użytkownik już coś wybrał wcześniej)
+        setBannerVisible(false);
+        return;
+      }
+
+      const isHidden = banner.classList.contains("cky-hide");
+      setBannerVisible(!isHidden);
     };
 
-    checkBanner();
-    const interval = setInterval(checkBanner, 500);
+    const observer = new MutationObserver(checkBanner);
+    observer.observe(document.body, { childList: true, subtree: true });
 
-    return () => clearInterval(interval);
+    // Bezpieczne pierwsze sprawdzenie (po 1s na wszelki wypadek)
+    setTimeout(checkBanner, 1000);
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -62,23 +72,21 @@ export default function MyApp({ Component, pageProps }) {
               backgroundColor: "rgba(0,0,0,0.4)",
               zIndex: 9999,
               pointerEvents: "auto",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              color: "#fff",
+              fontSize: "18px",
+              textAlign: "center",
+              padding: "20px",
             }}
-          >
-            <div
-              style={{
-                color: "#fff",
-                fontSize: "18px",
-                textAlign: "center",
-                marginTop: "20%",
-                padding: "0 20px",
-              }}
-            />
-          </div>
+          />
         )}
         <div
           style={{
             pointerEvents: bannerVisible ? "none" : "auto",
             filter: bannerVisible ? "blur(2px)" : "none",
+            transition: "filter 0.3s ease",
           }}
         >
           <Component {...pageProps} />

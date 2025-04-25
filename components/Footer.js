@@ -1,7 +1,7 @@
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav } from "react-bootstrap";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 
 const POSTS_QUERY = gql`
@@ -33,13 +33,13 @@ const POSTS_QUERY_CONTACT = gql`
 `;
 
 const Footer = () => {
-  const { loading, error, data } = useQuery(POSTS_QUERY, {
+  const { data } = useQuery(POSTS_QUERY, {
     variables: {
       data: "home_page",
     },
   });
 
-  const { loading: loading_cont, error: error_cont, data: data_cont } = useQuery(POSTS_QUERY_CONTACT, {
+  const { data: data_cont } = useQuery(POSTS_QUERY_CONTACT, {
     variables: {
       data: "kontakt",
     },
@@ -56,10 +56,6 @@ const Footer = () => {
         contact: data_cont.post.contact_acf,
       }
     : null;
-  
-
-  console.log("contact_data", contact_data)
-  console.log("data_cont", data_cont)
 
   return (
     <footer>
@@ -80,6 +76,9 @@ const Footer = () => {
               </Link>
               <Nav.Link href="/onas">O NAS</Nav.Link>
               <Nav.Link href="/kontakt">KONTAKT</Nav.Link>
+              <Nav.Link href="/polityka-prywatnosci">
+                POLITYKA PRYWATNOŚCI
+              </Nav.Link>
             </div>
           </div>
           <div className="Footer__row col-md-4">

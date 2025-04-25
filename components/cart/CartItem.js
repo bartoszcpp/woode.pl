@@ -3,15 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 const CartItem = (props) => {
-  const {
-    item,
-    cart,
-    toggleCart,
-    price,
-    togglePrice,
-    count,
-    toggleCount,
-  } = props;
+  const { item, cart, toggleCart, price, togglePrice, count, toggleCount } =
+    props;
 
   const productPrice = parseInt(item.price.match(/[+-]?\d+(\.\d+)?/g)[0]);
   const [productCount, setProductCount] = useState(item.totalProductCount);
@@ -52,7 +45,6 @@ const CartItem = (props) => {
 
       allStorageProduct[first] = { product: item };
       localStorage.setItem("item", JSON.stringify(allStorageProduct));
-      console.log(allStorageProduct);
     }
   };
 

@@ -15,7 +15,6 @@ class ContactForm extends Component {
   }
 
   render() {
-    console.log("this.props.subject", this.props.name)
     return (
       <div id="contact_form" className="container">
         <div className="contact">
@@ -98,7 +97,6 @@ class ContactForm extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    console.log("SASAS", this.state.subject)
     axios({
       method: "post",
       url: "https://getform.io/f/66618d8b-6b19-4662-9504-373f1f3369af",

@@ -1,4 +1,4 @@
-import ContactContainer from "../components/ContactContainer";
+import PrivacyPolicy from "../components/PrivacyPolicy";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <>
       <Header />
-      <ContactContainer />
+      <PrivacyPolicy />
       <Footer />
     </>
   );

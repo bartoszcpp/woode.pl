@@ -1,0 +1,54 @@
+@import "./global.scss";
+
+.privacy-policy-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.7;
+  margin-top: 100px;
+
+  @include small {
+    margin-top: 60px;
+  }
+
+  a {
+    color: #0066cc;
+    text-decoration: underline;
+    word-break: break-word;
+  }
+
+  .heading {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .section {
+    margin-bottom: 30px;
+  }
+
+  .section-heading {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: start;
+  }
+
+  .section p,
+  .section ul {
+    margin-bottom: 10px;
+    text-align: start;
+  }
+
+  .section ul {
+    padding-left: 20px;
+  }
+
+  .section ul li {
+    list-style-type: disc;
+    margin-bottom: 5px;
+    text-align: start;
+  }
+}
